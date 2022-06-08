@@ -24,8 +24,7 @@ def markov_move(current_move):  # TODO implement markov chain
 # returns the move that beats the most popular move transition
 def best_markov_move(current_move):
     if current_move == '':
-        current_move == move_index_map[random.randint(0, 3)]
-
+        current_move = move_index_map[random.randint(0, 2)]
 
     if current_move not in legal_moves:
         raise ValueError('illegal move')
