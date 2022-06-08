@@ -2,7 +2,7 @@
 Created by Daechathon and Jules on 6/1/2022
 A game of rock paper scissors against a markov chain AI
 """
-
+import random
 from logging import exception
 
 # x beats y
@@ -23,6 +23,10 @@ def markov_move(current_move):  # TODO implement markov chain
 
 # returns the move that beats the most popular move transition
 def best_markov_move(current_move):
+    if current_move == '':
+        current_move == move_index_map[random.randint(0, 3)]
+
+
     if current_move not in legal_moves:
         raise ValueError('illegal move')
     if len(markov_matrix) != 3 or len(markov_matrix[0]) != 3:
@@ -81,7 +85,7 @@ def start_game():
         if input_string != 'rock' and input_string != 'paper' and input_string != 'scissors':
             continue
 
-        markov_turn = best_markov_move(input_string)
+        markov_turn = best_markov_move(previous_move)
         print(f'Markov plays {markov_turn}')
         turn_outcome = move(input_string, markov_turn)
         if previous_move != '':
@@ -99,4 +103,4 @@ def start_game():
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     score = start_game()
-    print(f'Final Score: {score[0] - score[1]}')
+    print(f'Final Score: {score[0]} - {score[1]}')
